@@ -1,0 +1,21 @@
+theme = "github.com/jpanther/lynx"
+title = "Jordan Felle"
+
+enableEmoji = true
+disableKinds = ["taxonomy", "term"]
+
+[params.author]
+  name = "Jordan Felle"
+  headline = ""
+  image = "author.jpg"
+  links = [
+    { link = { href = "https://photo.felle.me/", text = "Photography", icon = "camera" } },
+    { github = "https://github.com/jordanfelle" },
+  ]
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true
