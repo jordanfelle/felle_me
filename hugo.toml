@@ -9,8 +9,13 @@ disableKinds = ["taxonomy", "term"]
   headline = ""
   image = "author.jpg"
   links = [
-    { link = { href = "https://photo.felle.me/", text = "Photography", icon = "camera" } },
+    { link = { href = "https://photo.felle.me", text = "Photography", icon = "camera" } },
     { github = "https://github.com/jordanfelle" },
+    { facebook = "https://www.facebook.com/hyper123" },
+    { instagram = "https://www.instagram.com/hyper123" },
+    { lastfm = "https://www.last.fm/user/hyper123123" },
+    { linkedin = "https://www.linkedin.com/in/jordanfelle" },
+    { steam = "https://steamcommunity.com/id/hyper123" },
   ]
 
 [markup.highlight]
