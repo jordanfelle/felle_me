@@ -10,6 +10,7 @@ disableKinds = ["taxonomy", "term"]
   image = "author.jpg"
   links = [
     { camera = { href = "https://photo.felle.me", text = "Photography", icon = "camera" } },
+    { telegram = "https://t.me/jordanfelle" },
     { github = "https://github.com/jordanfelle" },
     { facebook = "https://www.facebook.com/hyper123" },
     { instagram = "https://www.instagram.com/hyper123" },
