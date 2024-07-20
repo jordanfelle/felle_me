@@ -15,6 +15,7 @@ disableKinds = ["taxonomy", "term"]
     { github = "https://github.com/jordanfelle" },
     { facebook = "https://www.facebook.com/hyper123" },
     { twitter = "https://twitter.com/jordanfelle" },
+    { bluesky = "https://bsky.app/profile/jordanfelle.bsky.social" },
     { instagram = "https://www.instagram.com/hyper123" },
     { lastfm = "https://www.last.fm/user/hyper123123" },
     { linkedin = "https://www.linkedin.com/in/jordanfelle" },
