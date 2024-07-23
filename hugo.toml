@@ -20,6 +20,7 @@ disableKinds = ["taxonomy", "term"]
     { lastfm = "https://www.last.fm/user/hyper123123" },
     { linkedin = "https://www.linkedin.com/in/jordanfelle" },
     { steam = "https://steamcommunity.com/id/hyper123" },
+    { discord = "https://discord.com/users/307919782961872897" },
     { trakt = { href = "https://trakt.tv/users/hyper123", text = "Trakt", icon = "trakt" } },
   ]
 
