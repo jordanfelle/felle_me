@@ -12,6 +12,7 @@ disableKinds = ["taxonomy", "term"]
     { camera = { href = "https://photo.felle.me", text = "Photography", icon = "camera" } },
     { telegram = "https://t.me/jordanfelle" },
     { furtrack = { href = "https://www.furtrack.com/user/Hyper", text = "Furtrack", icon = "furtrack" } },
+    { kofi = { href = "https://ko-fi.com/jordanfelle  ", text = "Kofi", icon = "kofi" } },
     { github = "https://github.com/jordanfelle" },
     { facebook = "https://www.facebook.com/hyper123" },
     { twitter = "https://twitter.com/jordanfelle" },
