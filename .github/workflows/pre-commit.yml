@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Git
         run: |
@@ -52,7 +52,9 @@ jobs:
       - name: Run pre-commit checks
         id: pre-commit
         continue-on-error: true
-        run: pre-commit run --all-files
+        run: |
+          pre-commit run --all-files
+          pre-commit run --all-files --hook-stage pre-push
 
       - name: Commit and push fixes
         if: steps.pre-commit.outcome == 'failure' && github.event_name == 'push'
@@ -65,6 +67,16 @@ jobs:
             git push
           fi
 
+      - name: Re-run pre-commit after fixes
+        if: steps.pre-commit.outcome == 'failure' && github.event_name == 'push'
+        id: pre-commit-after-fix
+        continue-on-error: true
+        run: |
+          pre-commit run --all-files
+          pre-commit run --all-files --hook-stage pre-push
+
       - name: Fail if pre-commit found issues
-        if: steps.pre-commit.outcome == 'failure'
+        if: >
+          steps.pre-commit.outcome == 'failure' &&
+          (github.event_name != 'push' || steps.pre-commit-after-fix.outcome == 'failure')
         run: exit 1
