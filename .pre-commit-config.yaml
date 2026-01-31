@@ -1,5 +1,5 @@
 # Pre-commit hooks for Hugo site
-# Install: pip install pre-commit && pre-commit install
+# Install: pip install pre-commit && pre-commit install --hook-type pre-push
 # Run manually: pre-commit run --all-files
 
 repos:
@@ -91,7 +91,7 @@ repos:
         language: system
         pass_filenames: false
         files: ^(content/|layouts/|assets/|static/|themes/|hugo\.toml)
-        stages: [pre-push]
+        stages: [push]
 
 ci:
   autoupdate_schedule: monthly
