@@ -13,3 +13,35 @@
 .link-furtrack {
   background: rgb(45, 14, 76);
 }
+
+/* Responsive image styles with lazy loading support */
+.responsive-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: auto;
+  background-color: #f0f0f0;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+img[loading="lazy"] {
+  max-width: 100%;
+  height: auto;
+}
+
+picture .responsive-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
