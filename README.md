@@ -52,7 +52,7 @@ felle_me/
 ├── assets/             # CSS, icons, and other assets
 ├── config/             # Hugo module configuration
 ├── shortcodes/         # Custom shortcodes
-├── hugo.toml           # Hugo configuration
+├── hugo.yaml           # Hugo configuration
 ├── go.mod              # Go module dependencies (for theme)
 ├── wrangler.jsonc      # Cloudflare Pages deployment configuration
 └── renovate.json       # Dependency update configuration

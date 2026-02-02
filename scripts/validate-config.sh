@@ -50,7 +50,7 @@ validate_toml() {
 }
 
 # Validate Hugo configuration
-validate_toml "content/hugo.toml" || true
+validate_yaml "content/hugo.yaml" || true
 
 # Validate wrangler configuration
 validate_toml "wrangler.jsonc" || true
