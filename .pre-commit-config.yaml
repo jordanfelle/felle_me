@@ -9,15 +9,15 @@ repos:
     hooks:
       - id: trailing-whitespace
         name: Trim trailing whitespace
-        exclude: ^(resources/|public/)
+        exclude: ^(content/resources/|content/public/|content/themes/)
       - id: end-of-file-fixer
         name: Fix end of file
-        exclude: ^(resources/|public/)
+        exclude: ^(content/resources/|content/public/|content/themes/)
       - id: check-yaml
         name: Check YAML
       - id: check-json
         name: Check JSON
-        exclude: ^(resources/|public/|themes/.*\.(json|html))
+        exclude: ^(content/resources/|content/public/|content/themes/.*\.(json|html))
       - id: check-toml
         name: Check TOML
       - id: check-merge-conflict
@@ -47,7 +47,7 @@ repos:
                 truthy: disable
               }
             }
-        exclude: ^(resources/|public/)
+        exclude: ^(content/resources/|content/public/)
 
   # Markdown linting
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -56,7 +56,7 @@ repos:
       - id: markdownlint
         name: Lint Markdown
         args: ['--config', '.markdownlint.json']
-        exclude: ^(resources/|public/)
+        exclude: ^(content/resources/|content/public/)
 
   # Prettier for formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -65,7 +65,7 @@ repos:
       - id: prettier
         name: Format with Prettier
         types_or: [markdown, json]
-        exclude: ^(resources/|public/|themes/|\.github/|layouts/)
+        exclude: ^(content/resources/|content/public/|content/themes/|\.github/|content/layouts/)
 
   # Spell checking
   - repo: https://github.com/codespell-project/codespell
@@ -73,7 +73,7 @@ repos:
     hooks:
       - id: codespell
         name: Check spelling
-        exclude: ^(resources/|public/|themes/|\.git/)
+        exclude: ^(content/resources/|content/public/|content/themes/|\.git/)
 
   # GitHub Actions workflow validation
   - repo: https://github.com/rhysd/actionlint
@@ -87,10 +87,10 @@ repos:
     hooks:
       - id: hugo-build
         name: Hugo build check
-        entry: hugo
+        entry: bash -c 'cd content && npm run build'
         language: system
         pass_filenames: false
-        files: ^(content/|layouts/|assets/|static/|themes/|hugo\.toml)
+        files: ^(content/(archetypes|assets|shortcodes|config|hugo\.yaml|package\.json))
         stages: [pre-push]
 
 ci:
