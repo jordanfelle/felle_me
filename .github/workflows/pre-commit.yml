@@ -102,7 +102,6 @@ jobs:
           echo "Building Hugo site..."
           (
             cd content
-            npm install
             npm run build
             if [ ! -d "public" ] || [ ! -f "public/index.html" ]; then
               echo "Error: Hugo build failed - public/index.html not found"
@@ -116,10 +115,16 @@ jobs:
           if ! command -v tidy &> /dev/null; then
             sudo apt-get update && sudo apt-get install -y tidy
           fi
-          set -e
+          has_errors=0
           find content/public -name '*.html' -type f | head -20 | while read -r file; do
-            tidy -q -e "$file" 2>&1 | head -5
+            if ! tidy -q -e "$file" 2>&1 | head -5; then
+              has_errors=1
+            fi
           done
+          if [ $has_errors -eq 1 ]; then
+            echo "HTML validation failed"
+            exit 1
+          fi
           echo "HTML validation completed"
 
       - name: Validate project configuration

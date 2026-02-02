@@ -5,7 +5,9 @@ on: workflow_dispatch
 jobs:
   build:
     name: cadamsdev/image-optimizer-action
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:

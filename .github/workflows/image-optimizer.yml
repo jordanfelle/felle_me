@@ -15,7 +15,9 @@ jobs:
   build:
     if: github.event.pull_request.head.repo.full_name == github.repository
     name: cadamsdev/image-optimizer-action
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
