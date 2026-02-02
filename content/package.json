@@ -1,0 +1,9 @@
+{
+  "name": "felle-site",
+  "version": "1.0.0",
+  "description": "felle.me static site",
+  "scripts": {
+    "build": "hugo --minify",
+    "dev": "hugo server --disableFastRender"
+  }
+}
