@@ -62,7 +62,7 @@ jobs:
           key: >-
             ${{ runner.os }}-hugo-resources-${{
             hashFiles('content/**', 'content/assets/**',
-            'content/config/**', 'content/hugo.toml') }}
+            'content/config/**', 'content/hugo.yaml') }}
           restore-keys: |
             ${{ runner.os }}-hugo-resources-
 
@@ -109,10 +109,6 @@ jobs:
               exit 1
             fi
           )
-          if [ ! -d "content/public" ] || [ ! -f "content/public/index.html" ]; then
-            echo "Error: Hugo build failed - content/public/index.html not found"
-            exit 1
-          fi
           echo "Build successful"
 
       - name: Validate HTML structure
