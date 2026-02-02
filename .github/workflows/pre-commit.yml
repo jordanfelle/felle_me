@@ -116,12 +116,12 @@ jobs:
             sudo apt-get update && sudo apt-get install -y tidy
           fi
           has_errors=0
-          find content/public -name '*.html' -type f | head -20 | while read -r file; do
+          while read -r file; do
             if ! tidy -q -e "$file" 2>&1 | head -5; then
               has_errors=1
             fi
-          done
-          if [ $has_errors -eq 1 ]; then
+          done < <(find content/public -name '*.html' -type f | head -20)
+          if [ "$has_errors" -eq 1 ]; then
             echo "HTML validation failed"
             exit 1
           fi

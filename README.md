@@ -21,6 +21,7 @@ Personal website built with Hugo and the Lynx theme.
 Run the Hugo development server:
 
 ```bash
+cd content
 hugo server --disableFastRender
 ```
 
@@ -31,10 +32,11 @@ The site will be available at `http://localhost:1313`.
 Build the site for production:
 
 ```bash
-hugo --minify
+cd content
+npm run build
 ```
 
-This generates the static site in the `public/` directory.
+This generates the static site in the `content/public/` directory.
 
 ## Deployment
 
@@ -42,7 +44,7 @@ The site is deployed to Cloudflare Pages using Wrangler. Configuration is in [`w
 
 ### Automatic Deployment
 
-Deployments are handled automatically by Cloudflare Pages when changes are pushed to the configured branch. The build step uses the settings from [`wrangler.jsonc`](wrangler.jsonc), running `hugo --minify` to build the site.
+Deployments are handled automatically by Cloudflare Pages when changes are pushed to the configured branch. The build step uses the settings from [`wrangler.jsonc`](wrangler.jsonc), running `npm run build` from the `content/` directory to build the site.
 
 ## Project Structure
 
