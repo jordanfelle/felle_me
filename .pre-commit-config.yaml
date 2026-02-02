@@ -87,7 +87,7 @@ repos:
     hooks:
       - id: hugo-build
         name: Hugo build check
-        entry: hugo
+        entry: bash -c 'cd content && npm run build'
         language: system
         pass_filenames: false
         files: ^(content/|layouts/|assets/|static/|themes/|hugo\.toml)
