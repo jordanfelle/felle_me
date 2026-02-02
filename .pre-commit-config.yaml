@@ -90,7 +90,7 @@ repos:
         entry: bash -c 'cd content && npm run build'
         language: system
         pass_filenames: false
-        files: ^(content/(content|layouts|assets|static|themes|hugo\.yaml))
+        files: ^(content/(archetypes|assets|shortcodes|config|hugo\.yaml|package\.json))
         stages: [pre-push]
 
 ci:
