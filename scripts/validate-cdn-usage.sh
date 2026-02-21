@@ -39,7 +39,7 @@ done < <(find "$CONTENT_DIR" -type f \( -name "*.html" -o -name "*.htm" \) \
   ! -path "*/.git/*" \
   ! -path "*/vendor/*" \
   ! -path "*/dist/*" \
-  -print0)
+  -print0) || true
 
 if (( ${#failures[@]} > 0 )); then
   echo ""
