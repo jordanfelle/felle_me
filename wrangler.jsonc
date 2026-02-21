@@ -10,6 +10,7 @@
     "directory": "./content/public"
   },
   "build": {
+    // build.sh must be in the repository root; Wrangler executes build commands from the repo root
     "command": "bash ./build.sh"
   }
 }
