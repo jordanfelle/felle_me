@@ -93,6 +93,9 @@ jobs:
         if: steps.pre-commit.outcome == 'failure' && github.event_name == 'pull_request'
         run: |
           if ! git diff --quiet || [ -n "$(git status --porcelain)" ]; then
+            # Prevent infinite loops: if the bot already attempted to fix issues,
+            # fail instead of trying again. To retry: push a new commit (even empty
+            # with --allow-empty) to retrigger the workflow.
             last_author=$(git log -1 --pretty=%an)
             last_author_email=$(git log -1 --pretty=%ae)
             last_subject=$(git log -1 --pretty=%s)
@@ -100,6 +103,10 @@ jobs:
               [ "$last_author_email" = "github-actions[bot]@users.noreply.github.com" ] && \
               [ "$last_subject" = "Fix pre-commit issues" ]; then
               echo "Pre-commit fixes already applied by the bot; refusing to loop."
+              echo "If you believe the bot's fix was incomplete or needs retrying:"
+              echo "  1. Review the changes from the bot's commit"
+              echo "  2. Make any manual adjustments if needed"
+              echo "  3. Push a new commit (even 'git commit --allow-empty') to retrigger pre-commit"
               exit 1
             fi
             git add -A
