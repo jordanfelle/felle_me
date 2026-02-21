@@ -97,7 +97,7 @@ jobs:
             last_author_email=$(git log -1 --pretty=%ae)
             last_subject=$(git log -1 --pretty=%s)
             if [ "$last_author" = "github-actions[bot]" ] && \
-              [ "$last_author_email" = "41898282+github-actions[bot]@users.noreply.github.com" ] && \
+              [ "$last_author_email" = "github-actions[bot]@users.noreply.github.com" ] && \
               [ "$last_subject" = "Fix pre-commit issues" ]; then
               echo "Pre-commit fixes already applied by the bot; refusing to loop."
               exit 1
