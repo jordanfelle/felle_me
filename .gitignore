@@ -22,3 +22,6 @@ hugo.linux
 # Project specific files
 TODO
 node_modules/**
+
+# Tooling caches
+.cache/
