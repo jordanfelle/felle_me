@@ -3,15 +3,15 @@
   "extends": ["config:recommended"],
   "regexManagers": [
     {
-      "fileMatch": ["^\\\\.hugo-version$"],
-      "matchStrings": ["(?<currentValue>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)"],
+      "fileMatch": ["^\\.hugo-version$"],
+      "matchStrings": ["(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "gohugoio/hugo",
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
-      "fileMatch": ["^\\\\.github/workflows/pre-commit\\\\.yml$"],
-      "matchStrings": ["hugo-version: \\\"(?<currentValue>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)\\\""],
+      "fileMatch": ["^\\.github/workflows/pre-commit\\.yml$"],
+      "matchStrings": ["hugo-version: \\\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\\\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "gohugoio/hugo",
       "extractVersionTemplate": "^v(?<version>.*)$"
