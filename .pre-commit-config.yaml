@@ -97,6 +97,13 @@ repos:
         language: script
         pass_filenames: false
         files: ^content/.*\.(html|htm)$
+      - id: update-sri-hashes
+        name: Update SRI hashes for CDN scripts
+        entry: ./scripts/update-sri-hashes.sh
+        language: script
+        pass_filenames: true
+        files: ^content/.*\.html$
+        stages: [pre-commit]
       - id: hugo-build
         name: Hugo build check
         entry: bash -c 'cd content && npm run build'

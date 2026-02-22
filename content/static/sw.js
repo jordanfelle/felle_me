@@ -1,6 +1,7 @@
 /**
- * Service Worker for hypercat.me
- * Enables offline support for the poses page.
+ * Service Worker for felle.me
+ * Enables offline support with cache-first strategy for images and assets,
+ * and network-first strategy for HTML pages.
  */
 'use strict';
 
