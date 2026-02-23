@@ -10,8 +10,13 @@ Before installing pre-commit hooks, ensure you have:
 - **Node.js 16+** - Required for markdownlint and Prettier
 - **Go 1.18+** - Required for Hugo module management (see [Go installation](https://go.dev/doc/install))
   - This site uses Hugo modules defined in `go.mod`
-- **Hugo extended** - Required for the Hugo build check hook (see [Hugo installation](https://gohugo.io/installation/))
-  - Must be available on your PATH (verify with `hugo version`)
+- **bash** - Required for the Hugo build check hook (see below)
+  - The pre-commit hook uses `./build.sh` which automatically downloads a pinned Hugo binary
+  - No system-wide Hugo installation required for pre-commit checks
+- **Hugo extended** - Required for both local development and the pre-push Hugo build verification hook
+  - The `build.sh` script is used in automated Linux AMD64 environments (e.g., CI/Cloudflare Pages) to download the correct Hugo version
+  - For local development (`hugo server`, `npm run dev`) and git pre-push hooks, install Hugo extended for your platform (see [Hugo installation](https://gohugo.io/installation/))
+  - Note: The pre-push hook runs `build.sh` which only downloads Linux AMD64 binaries and will fail on macOS/Windows
 
 ## Installation
 
@@ -46,17 +51,15 @@ Before installing pre-commit hooks, ensure you have:
 - **Prettier**: Auto-formats markdown and JSON files
 - **Codespell**: Checks for common spelling mistakes
 - **GitHub Actions workflow validation**: Validates workflow YAML syntax and configurations
+- **SRI integrity validation**: Validates and automatically adds/updates Subresource Integrity hashes for CDN-hosted scripts and stylesheets
 - **Hugo build check**: Verifies the site builds successfully
 
-## CI/CD and Dependency Updates
+## Consistency Note
 
-The GitHub Actions workflow (`.github/workflows/pre-commit.yml`) pins specific versions for reproducibility:
+Keep build tooling, SRI scripts, and CI workflow patterns aligned across the
+`hypercat_me`, `felle_me`, and `shutterpaws_pics` repos whenever possible.
 
-- **Hugo**: Pinned to a specific version
-- **Node.js**: Pinned to v18
-- **Python**: Pinned to 3.11
-
-**Version updates are handled automatically by Renovate**, which is configured in `renovate.json`. Renovate will:
+The GitHub Actions workflow (`.github/workflows/pre-commit.yml`) pins specific versions for reproducibility. **Version updates are handled automatically by Renovate**, which is configured in `renovate.json`. Renovate will:
 
 - Monitor for new Hugo, Node.js, and other dependency releases
 - Create PRs automatically when updates are available

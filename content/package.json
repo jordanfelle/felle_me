@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "felle.me static site",
   "scripts": {
-    "build": "hugo --minify",
-    "dev": "hugo server --disableFastRender"
+    "build": "bash ../build.sh",
+    "dev": "bash ../build.sh && hugo server --disableFastRender"
   }
 }

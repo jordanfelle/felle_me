@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "felle-me",
-  "compatibility_date": "2026-01-30",
+  "compatibility_date": "2026-02-21",
   "preview_urls": true,
   "placement": {
     "mode": "smart"
@@ -10,7 +10,7 @@
     "directory": "./content/public"
   },
   "build": {
-    "command": "npm run build",
-    "cwd": "./content"
+    // build.sh must be in the repository root; Wrangler executes build commands from the repo root
+    "command": "bash ./build.sh"
   }
 }

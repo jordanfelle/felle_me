@@ -97,12 +97,21 @@ repos:
         language: script
         pass_filenames: false
         files: ^content/.*\.(html|htm)$
+      - id: sri-integrity-check
+        name: Validate and add SRI hashes for CDN assets
+        entry: ./scripts/validate-and-update-sri.sh
+        language: script
+        pass_filenames: true
+        files: ^content/.*\.html$
+        # NOTE: This hook automatically updates SRI hashes on commit. This is intentional.
+        # SRI hashes must be kept up-to-date for security. Do not remove this automation.
       - id: hugo-build
         name: Hugo build check
-        entry: bash -c 'cd content && npm run build'
+        entry: bash -c './build.sh'
         language: system
         pass_filenames: false
-        files: ^(content/(archetypes|assets|shortcodes|config|hugo\.yaml|package\.json))
+        # yamllint disable-line rule:line-length
+        files: ^(content/(archetypes|assets|shortcodes|config|layouts|hugo\.yaml|package\.json)|build\.sh|\.hugo-version|\.hugo-archive-checksum)$
         stages: [pre-push]
 
 ci:

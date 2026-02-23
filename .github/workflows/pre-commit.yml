@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   pre-commit:
@@ -54,7 +55,7 @@ jobs:
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.154.5"
+          hugo-version: "0.156.0"
           extended: true
 
       - name: Cache Hugo resources
@@ -90,6 +91,7 @@ jobs:
           fi
 
       - name: Commit and push fixes (PR only)
+        id: commit-fixes
         if: steps.pre-commit.outcome == 'failure' && github.event_name == 'pull_request'
         run: |
           if ! git diff --quiet || [ -n "$(git status --porcelain)" ]; then
@@ -107,16 +109,50 @@ jobs:
               echo "  1. Review the changes from the bot's commit"
               echo "  2. Make any manual adjustments if needed"
               echo "  3. Push a new commit (even 'git commit --allow-empty') to retrigger pre-commit"
+              echo "fixes_committed=false" >> "$GITHUB_OUTPUT"
               exit 1
             fi
             git add -A
             git commit -m "Fix pre-commit issues"
             git push
+            commit_sha=$(git rev-parse HEAD)
+            files=$(git show --name-status --no-patch --pretty=format: -1)
+            {
+              echo "fixes_committed=true"
+              echo "commit_sha=$commit_sha"
+              echo "changed_files<<EOF"
+              echo "$files"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
             echo "✅ Pre-commit fixes committed and pushed to PR"
           else
             echo "❌ Pre-commit checks failed but no fixes were applied"
+            echo "fixes_committed=false" >> "$GITHUB_OUTPUT"
             exit 1
           fi
+
+      - name: Comment on PR with auto-fix details
+        if: steps.commit-fixes.outputs.fixes_committed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = '${{ steps.commit-fixes.outputs.commit_sha }}';
+            const files = ${{ toJson(steps.commit-fixes.outputs.changed_files) }};
+            const body = [
+              "Pre-commit auto-fix applied and pushed by GitHub Actions.",
+              "",
+              `Commit: ${sha}`,
+              "",
+              "Files:",
+              "```",
+              files,
+              "```",
+              "If checks are still failing, pull the latest changes and rerun pre-commit."
+            ].join("\n");
+            await github.rest.issues.createComment({
+              ...context.issue,
+              body
+            });
 
       - name: Fail on main branch issues
         if: steps.pre-commit.outcome == 'failure' && github.event_name == 'push'
@@ -128,14 +164,11 @@ jobs:
       - name: Build Hugo site
         run: |
           echo "Building Hugo site..."
-          (
-            cd content
-            npm run build
-            if [ ! -d "public" ] || [ ! -f "public/index.html" ]; then
-              echo "Error: Hugo build failed - public/index.html not found"
-              exit 1
-            fi
-          )
+          bash ./build.sh
+          if [ ! -d "content/public" ] || [ ! -f "content/public/index.html" ]; then
+            echo "Error: Hugo build failed - content/public/index.html not found"
+            exit 1
+          fi
           echo "Build successful"
 
       - name: Validate HTML structure
