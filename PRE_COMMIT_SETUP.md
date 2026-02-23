@@ -13,9 +13,10 @@ Before installing pre-commit hooks, ensure you have:
 - **bash** - Required for the Hugo build check hook (see below)
   - The pre-commit hook uses `./build.sh` which automatically downloads a pinned Hugo binary
   - No system-wide Hugo installation required for pre-commit checks
-- **Hugo extended** - Required if running the local development server
-- The `build.sh` script provides the correct Hugo version for the pre-commit build hook
-- For local development (`hugo server` or `npm run dev`), install Hugo extended (see [Hugo installation](https://gohugo.io/installation/))
+- **Hugo extended** - Required for both local development and the pre-push Hugo build verification hook
+  - The `build.sh` script is used in automated Linux AMD64 environments (e.g., CI/Cloudflare Pages) to download the correct Hugo version
+  - For local development (`hugo server`, `npm run dev`) and git pre-push hooks, install Hugo extended for your platform (see [Hugo installation](https://gohugo.io/installation/))
+  - Note: The pre-push hook runs `build.sh` which only downloads Linux AMD64 binaries and will fail on macOS/Windows
 
 ## Installation
 
