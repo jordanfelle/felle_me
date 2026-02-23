@@ -111,7 +111,7 @@ repos:
         language: system
         pass_filenames: false
         # yamllint disable-line rule:line-length
-        files: ^(content/(archetypes|assets|shortcodes|config|hugo\.yaml|package\.json)|build\.sh|\.hugo-version|\.hugo-archive-checksum)$
+        files: ^(content/(archetypes|assets|shortcodes|config|layouts|hugo\.yaml|package\.json)|build\.sh|\.hugo-version|\.hugo-archive-checksum)$
         stages: [pre-push]
 
 ci:

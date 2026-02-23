@@ -5,7 +5,7 @@
  */
 'use strict';
 
-var CACHE_VERSION = 'v1';
+var CACHE_VERSION = String(Date.now());
 var STATIC_CACHE = 'felle-static-' + CACHE_VERSION;
 var RUNTIME_CACHE = 'felle-runtime-' + CACHE_VERSION;
 
