@@ -4,6 +4,6 @@
   "description": "felle.me static site",
   "scripts": {
     "build": "bash ../build.sh",
-    "dev": "bash ../build.sh && cd .. && hugo server --disableFastRender"
+    "dev": "bash ../build.sh && hugo server --disableFastRender"
   }
 }
