@@ -10,8 +10,12 @@ Before installing pre-commit hooks, ensure you have:
 - **Node.js 16+** - Required for markdownlint and Prettier
 - **Go 1.18+** - Required for Hugo module management (see [Go installation](https://go.dev/doc/install))
   - This site uses Hugo modules defined in `go.mod`
-- **Hugo extended** - Required for the Hugo build check hook (see [Hugo installation](https://gohugo.io/installation/))
-  - Must be available on your PATH (verify with `hugo version`)
+- **bash** - Required for the Hugo build check hook (see below)
+  - The pre-commit hook uses `./build.sh` which automatically downloads a pinned Hugo binary
+  - No system-wide Hugo installation required for pre-commit checks
+- **Hugo extended** (optional) - Only needed if running local development with `hugo server`
+  - The build.sh script provides the correct Hugo version for the build hook
+  - For running the dev server locally: install Hugo extended (see [Hugo installation](https://gohugo.io/installation/)) or use `npm run dev`
 
 ## Installation
 

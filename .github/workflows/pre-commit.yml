@@ -164,14 +164,11 @@ jobs:
       - name: Build Hugo site
         run: |
           echo "Building Hugo site..."
-          (
-            cd content
-            npm run build
-            if [ ! -d "public" ] || [ ! -f "public/index.html" ]; then
-              echo "Error: Hugo build failed - public/index.html not found"
-              exit 1
-            fi
-          )
+          bash ./build.sh
+          if [ ! -d "content/public" ] || [ ! -f "content/public/index.html" ]; then
+            echo "Error: Hugo build failed - content/public/index.html not found"
+            exit 1
+          fi
           echo "Build successful"
 
       - name: Validate HTML structure
