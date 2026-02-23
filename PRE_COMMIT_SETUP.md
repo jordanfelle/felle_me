@@ -48,8 +48,6 @@ Before installing pre-commit hooks, ensure you have:
 - **GitHub Actions workflow validation**: Validates workflow YAML syntax and configurations
 - **Hugo build check**: Verifies the site builds successfully
 
-## CI/CD and Dependency Updates
-
 ## Consistency Note
 
 Keep build tooling, SRI scripts, and CI workflow patterns aligned across the
