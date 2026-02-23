@@ -15,6 +15,13 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "gohugoio/hugo",
       "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "fileMatch": ["^\\.hugo-archive-checksum$"],
+      "matchStrings": ["(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "gohugoio/hugo",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ]
 }

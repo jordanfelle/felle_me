@@ -107,7 +107,7 @@ repos:
         # SRI hashes must be kept up-to-date for security. Do not remove this automation.
       - id: hugo-build
         name: Hugo build check
-        entry: bash -c 'cd content && npm run build'
+        entry: bash -c './build.sh'
         language: system
         pass_filenames: false
         files: ^(content/(archetypes|assets|shortcodes|config|hugo\.yaml|package\.json))
