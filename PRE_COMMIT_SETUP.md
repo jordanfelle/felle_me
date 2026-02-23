@@ -46,6 +46,7 @@ Before installing pre-commit hooks, ensure you have:
 - **Prettier**: Auto-formats markdown and JSON files
 - **Codespell**: Checks for common spelling mistakes
 - **GitHub Actions workflow validation**: Validates workflow YAML syntax and configurations
+- **SRI integrity validation**: Validates and automatically adds/updates Subresource Integrity hashes for CDN-hosted scripts and stylesheets
 - **Hugo build check**: Verifies the site builds successfully
 
 ## Consistency Note
